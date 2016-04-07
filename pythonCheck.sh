@@ -5,6 +5,7 @@ for i in $(cat serverList) ; do
                 -o UserKnownHostsFile=/dev/null \
                 -o StrictHostKeyChecking=no \
                 -o PreferredAuthentications=publickey \
-                $(whoami)@"$i" 'python --version';
+                $(whoami)@"$i" \
+		'echo -n "$(hostname) "; python --version';
 
 done
