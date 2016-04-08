@@ -8,6 +8,7 @@ To Do
 * Scan Rate (sr in vmstat)
 * Memory Paging PiT
 * Memory Activity Page Scan PiT
+* Swap (Oracle HTTP - Monitoring Swap Resources)
 '''
 
 def run_shell_command(cmd, *shell):
