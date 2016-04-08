@@ -6,6 +6,7 @@ import csv
 Script grabs SunOS memory statistics and outputs as CSV
 To Do
 * Free Memory Percentage
+* Scan Rate (sr in vmstat)
 * Memory Paging PiT
 * Memory Activity Page Scan PiT
 '''
@@ -40,6 +41,8 @@ data = [
 writer.writerows(data)
 csv_file.close()
 
+with open('memoryUtilization.csv', 'r') as csv_file:
+	print csv_file.read()
 
 
 # 'prtconf | grep Memory' cmd gives total SunOS system memory
