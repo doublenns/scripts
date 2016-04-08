@@ -5,7 +5,6 @@ import csv
 '''
 Script grabs SunOS memory statistics and outputs as CSV
 To Do
-* Free Memory Percentage
 * Scan Rate (sr in vmstat)
 * Memory Paging PiT
 * Memory Activity Page Scan PiT
@@ -29,14 +28,17 @@ def run_shell_command(cmd, *shell):
 free_memory_statistics = run_shell_command("vmstat 1 2").split('\n')[3]
 free_memory = free_memory_statistics.split()[4]
 total_memory_statistics = run_shell_command("prtconf | grep Memory", "shell")
-total_memory = total_memory_statistics.split(":")[1].strip()
+total_memoryMB = total_memory_statistics.split(":")[1].split()[0]
+total_memory = int(total_memoryMB) * 1024
+free_perc_memory = (int(free_memory) * 100) / total_memory
 
 csv_file = open('memoryUtilization.csv', 'w')
 writer = csv.writer(csv_file)
 data = [
 	['Name', 'Value'],
+	['Total Memory', total_memory],
 	['Free Memory', free_memory],
-	['Total Memory', total_memory]
+	['Free Memory%', free_perc_memory]
 ]
 writer.writerows(data)
 csv_file.close()
