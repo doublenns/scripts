@@ -14,7 +14,6 @@ To Do
 def run_shell_command(cmd, *shell):
 	# Might want to use a "try" or call.check in case bashCommand fails
 	# i.e. not a SunOS box
-	bash_command = cmd
 	if "shell" in shell:
 		process = subprocess.Popen(cmd,
 			stdout=subprocess.PIPE, shell=True)
